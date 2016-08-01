@@ -46,7 +46,7 @@ Android实用代码片段
   android：background="@null"
   ```
   
-+ String添加文字  
++ String添加文字(字符串格式化)  
   String
   ```xml
   <string name="hello">你好，我是%1$s。</string>
@@ -72,4 +72,96 @@ Android实用代码片段
   TextView hyperlinkTextView = new TextView(this);  
   hyperlinkTextView.setText(Html.fromHtml(getResources().getString(R.string.silion_blog)));  
   hyperlinkTextView.setMovementMethod(LinkMovementMethod.getInstance()); 
+  ```
+
++ 自定义ListView divider  
+  drawable/divider_listitem.xml
+  ```xml
+  <insert xmlns:android=“http://schemas.android.com/apk/res/android"  
+    android:insert="0dp">  
+  
+    <shape android:shape="rectangle">  
+        <solid android:color="@color/ca" />  
+    </shape>  
+  </insert>  
+  ```
+  
+  布局
+  ```xml
+  <ListView  
+    android:id="@+id/listView"  
+    android:layout_width="match_parent"  
+    android:layout_height="wrap_content"  
+    android:divider="@drawable/divider_listitem"  
+    android:dividerHeight="2px" />  
+  ```
+  
++ URI
+  ```java
+  Log.d(TAG, "performActionLink, actionLink = " + "voc://view/main");  
+  
+  URI uri = null;  
+  try {  
+    uri = new URI(actionLink.trim());  
+  } catch (URISyntaxException e) {  
+    Log.e(TAG, e.getMessage(), e);  
+  }  
+  if (uri == null) {  
+    return;  
+  }  
+  
+  String scheme = uri.getScheme() != null ? uri.getScheme() : "";  
+  String function = uri.getHost() != null ? uri.getHost() : "";  
+  String path = uri.getPath() != null ? uri.getPath() : "";  
+  if (path.length() > 1) {  
+    path = path.substring(1);  
+  }  
+  ```
+  
++ 定时重复执行Timer() and TimerTask
+  ```java
+  mViewPagerScrollTimer = new Timer();  
+  mViewPagerScrollTimer.scheduleAtFixedRate(new TimerTask() {  
+    @Override  
+    public void run() {  
+        mHandler.post(new Runnable() {  
+            @Override  
+            public void run() {  
+            }  
+        });  
+    }  
+  }, 5000, 5000);  
+  ```
+  
++ 字符串编码转换
+  ```java
+  new String(str.getBytes("iso8859-1"), "utf-8")
+  ```
+  
++ URL编码
+  ```java
+  URLEncode.encode(str, "UTF-8)
+  ```
+  
++ 获取状态栏高度
+  ```java
+  /**  
+   * 用于获取状态栏的高度。  
+   *  
+   * @return 返回状态栏高度的像素值。  
+   */  
+  private int getStatusBarHeight() {  
+    if (mStatusBarHeight == 0) {  
+        try {  
+            Class<?> clazz = Class.forName("com.android.internal.R$dimen");  
+            Object object = clazz.newInstance();  
+            Field field = clazz.getField("status_bar_height");  
+            int x = (int) field.get(object);  
+            mStatusBarHeight = getResources().getDimensionPixelSize(x);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+    }  
+    return 0;  
+  }  
   ```
