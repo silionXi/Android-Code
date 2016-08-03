@@ -4,6 +4,7 @@ Android实用代码片段
 ## 网上收集
 + [Android实用代码片段整合](http://www.eoeandroid.com/thread-570919-1-1.html?_dsign=907052b3)
 + [36个Android开发常用代码片段](http://www.phpxs.com/code/1001775/)
++ [Android开发最佳实践-胡凯](http://hukai.me/android-dev-patterns/)
 
 ## 个人整理
 + 隐藏输入法键盘
