@@ -171,6 +171,7 @@ Android实用代码片段
   ```java
   public void playAudio(View view) {
       mMediaPlayer = new MediaPlayer();
+      //资源存放在:res/raw/sample.mp3
       Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
       switch (view.getId()) {
           case R.id.btVoiceCall:
