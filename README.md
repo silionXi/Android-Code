@@ -166,3 +166,44 @@ Android实用代码片段
     return 0;  
   }  
   ```
+
++ 播放声音(播放音乐)
+  ```java
+  public void playAudio(View view) {
+      mMediaPlayer = new MediaPlayer();
+      Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
+      switch (view.getId()) {
+          case R.id.btVoiceCall:
+              try {
+                  mMediaPlayer.setDataSource(this, uri);
+                  mMediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
+                  mMediaPlayer.prepare();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+              break;
+          case R.id.btMusic:
+              try {
+                  mMediaPlayer.setDataSource(this, uri);
+                  mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                  mMediaPlayer.prepare();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+              break;
+          default:
+              break;
+      }
+        mMediaPlayer.start();
+        mHandler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              if (mMediaPlayer.isPlaying()) {
+                  mMediaPlayer.stop();
+              }
+              mMediaPlayer.release();
+              mMediaPlayer = null;
+          }
+      }, 5000);
+  }
+  ```
