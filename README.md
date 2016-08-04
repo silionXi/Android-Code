@@ -208,3 +208,14 @@ Android实用代码片段
       }, 5000);
   }
   ```
+
++ 对View的layout结束事件进行监听
+  ```java
+  view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+          llPageBullet.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+          ...
+      }
+  });
+  ```
