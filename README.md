@@ -219,3 +219,8 @@ Android实用代码片段
       }
   });
   ```
+
++ 添加array资源到List
+  ```java
+  Collections.addAll(_sparePartList, _mainActivity.getResources().getStringArray(R.array.spare_part));
+  ```
