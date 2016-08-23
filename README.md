@@ -224,3 +224,9 @@ Android实用代码片段
   ```java
   Collections.addAll(_sparePartList, _mainActivity.getResources().getStringArray(R.array.spare_part));
   ```
+
++ 获取像素密度
+  ```java
+  // dp = px / density
+  float density = getResources().getDisplayMetrics().density;
+  ```
